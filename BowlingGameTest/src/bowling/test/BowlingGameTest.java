@@ -1,17 +1,33 @@
 package bowling.test;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 import bowling.Game;
 
 public class BowlingGameTest {
+  private Game g;
+
+  @Before
+  public void setUp() {
+    g = new Game();
+  }
+
+  private void rollMany(int n, int pins) {
+    for (int i = 0; i < n; i++)
+      g.roll(pins);
+  }
 
   @Test
   public void gutter_game_yields_zero() {
-    Game g = new Game();
-    for (int i = 0; i < 20; i++)
-      g.roll(0);
+    rollMany(20, 0);
     Assert.assertEquals(0, g.score());
+  }
+
+  @Test
+  public void all_ones_yield_20() {
+    rollMany(20, 1);
+    Assert.assertEquals(20, g.score());
   }
 }
