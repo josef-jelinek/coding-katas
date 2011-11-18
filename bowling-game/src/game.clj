@@ -1,11 +1,5 @@
 (ns game)
 
-(defn- roll [game pins]
-  (conj game pins))
-
-(defn roll-game [rolls]
-  (reduce roll [] rolls))
-
 (defn- strike? [game]
   (= 10 (+ (nth game 0))))
 
