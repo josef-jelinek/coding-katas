@@ -39,6 +39,19 @@ public class BowlingGameTest {
     Assert.assertEquals(16, g.score());
   }
 
+  @Test
+  public void one_strike_gives_bonus() {
+    rollStrike();
+    g.roll(4);
+    g.roll(3);
+    rollMany(16, 0);
+    Assert.assertEquals(24, g.score());
+  }
+
+  private void rollStrike() {
+    g.roll(10);
+  }
+
   private void rollSpare() {
     g.roll(5);
     g.roll(5);
