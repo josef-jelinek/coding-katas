@@ -13,7 +13,7 @@ public final class Game {
     int score = 0;
     int frameIndex = 0;
     for (int frame = 0; frame < 10; frame++) {
-      if (isString(frameIndex)) {
+      if (isStrike(frameIndex)) {
         score += 10 + strikeBonus(frameIndex);
         frameIndex += 1;
       } else if (isSpare(frameIndex)) {
@@ -27,7 +27,7 @@ public final class Game {
     return score;
   }
 
-  private boolean isString(int frameIndex) {
+  private boolean isStrike(int frameIndex) {
     return rolls[frameIndex] == 10;
   }
 
