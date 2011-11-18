@@ -13,12 +13,21 @@
   <script>
     var tests = (function () {
       var g = BOWLING_GAME();
+
+      function rollMany(n, pins) {
+        var i;
+        for (i = 0; i < n; i++)
+          g.roll(pins);
+      }
+
       return {
         gutter_game: function () {
-          var i;
-          for (i = 0; i < 20; i++)
-            g.roll(0);
+          rollMany(20, 0);
           this.isSame(0, g.score());
+        },
+        simple_game: function () {
+          rollMany(20, 1);
+          this.isSame(20, g.score());
         }
       };
     }());
