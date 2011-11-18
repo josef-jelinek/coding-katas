@@ -12,22 +12,35 @@
   <script src="bowling.js"></script>
   <script>
     var tests = (function () {
-      var g = BOWLING_GAME();
 
-      function rollMany(n, pins) {
+      function rollMany(g, n, pins) {
         var i;
         for (i = 0; i < n; i++)
           g.roll(pins);
       }
 
+      function rollSpare(g) {
+        g.roll(5);
+        g.roll(5);
+      }
+
       return {
         gutter_game: function () {
-          rollMany(20, 0);
+          var g = BOWLING_GAME();
+          rollMany(g, 20, 0);
           this.isSame(0, g.score());
         },
         simple_game: function () {
-          rollMany(20, 1);
+          var g = BOWLING_GAME();
+          rollMany(g, 20, 1);
           this.isSame(20, g.score());
+        },
+        spare_bonus: function () {
+          var g = BOWLING_GAME();
+          rollSpare(g);
+          g.roll(3);
+          rollMany(g, 17, 0);
+          this.isSame(16, g.score());
         }
       };
     }());
