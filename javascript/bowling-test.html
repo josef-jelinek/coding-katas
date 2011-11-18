@@ -53,6 +53,11 @@
           g.roll(4);
           rollMany(g, 16, 0);
           this.isSame(24, g.score());
+        },
+        perfect_game: function () {
+          var g = BOWLING_GAME();
+          rollMany(g, 12, 10);
+          this.isSame(300, g.score());
         }
       };
     }());
