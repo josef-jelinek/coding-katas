@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JavaScript Bowling Test</title>
+  <style>
+    html, body { margin: 0; padding: 0; }
+    body { font: 12px Arial, sans-serif; background: #FFF; color: #000; padding: 20px; }
+    #result { padding: 3px 10px; }
+    #log { padding: 10px; font-family: monospace; }
+  </style>
+  <script src="bowling.js"></script>
+  <script>
+    var tests = (function () {
+      var g = BOWLING_GAME();
+      return {
+        gutter_game: function () {
+          var i;
+          for (i = 0; i < 20; i++)
+            g.roll(0);
+          this.isSame(0, g.score());
+        }
+      };
+    }());
+  </script>
+</head>
+<body onload="run()">
+  <div id="result"></div>
+  <div id="log"></div>
+  <script src="test.js"></script>
+  <script>
+    function run() {
+      var result = document.getElementById('result');
+      var log = document.getElementById('log');
+      TEST.init(result, log)(tests);
+    }
+  </script>
+</body>
+</html>
+
