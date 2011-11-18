@@ -30,4 +30,17 @@ public class BowlingGameTest {
     rollMany(20, 1);
     Assert.assertEquals(20, g.score());
   }
+
+  @Test
+  public void one_spare_gives_bonus() {
+    rollSpare();
+    g.roll(3);
+    rollMany(17, 0);
+    Assert.assertEquals(16, g.score());
+  }
+
+  private void rollSpare() {
+    g.roll(5);
+    g.roll(5);
+  }
 }
