@@ -21,10 +21,12 @@
 (defn- frame-pins [game]
   (+ (nth game 0) (nth game 1)))
 
-(defn score [game]
-  (let [score-frame (fn [f len] (+ (f game) (score (drop len game))))]
-	  (cond
-	    (empty? game) 0
-	    (strike? game) (score-frame strike-bonus 1)
-	    (spare? game) (score-frame spare-bonus 2)
-    :else (score-frame frame-pins 2))))
+(defn- score-n [game frame]
+  (let [score-frame (fn [f len]
+			                  (+ (f game) (score-n (drop len game) (inc frame))))]
+	  (cond (= frame 10) 0
+			    (strike? game) (score-frame strike-bonus 1)
+			    (spare? game) (score-frame spare-bonus 2)
+			    :else (score-frame frame-pins 2))))
+
+(defn score [game] (score-n game 0))
