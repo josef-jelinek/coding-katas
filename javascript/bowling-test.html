@@ -24,6 +24,10 @@
         g.roll(5);
       }
 
+      function rollStrike(g) {
+        g.roll(10);
+      }
+
       return {
         gutter_game: function () {
           var g = BOWLING_GAME();
@@ -41,6 +45,14 @@
           g.roll(3);
           rollMany(g, 17, 0);
           this.isSame(16, g.score());
+        },
+        strike_bonus: function () {
+          var g = BOWLING_GAME();
+          rollStrike(g);
+          g.roll(3);
+          g.roll(4);
+          rollMany(g, 16, 0);
+          this.isSame(24, g.score());
         }
       };
     }());
