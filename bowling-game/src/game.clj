@@ -1,7 +1,7 @@
 (ns game)
 
 (defn- strike? [game]
-  (= 10 (+ (nth game 0))))
+  (= 10 (nth game 0)))
 
 (defn- strike-bonus [game]
   (+ 10 (nth game 1) (nth game 2)))
